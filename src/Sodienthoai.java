@@ -66,9 +66,17 @@ public class Sodienthoai {
                 return o1.ten.compareTo(o2.ten);
             }
         });
-
+//        public void sort() {
+//            Collections.sort(listSdt, new Comparator<Sdt>() {
+//                @Override
+//                public int compare(Sdt o1, Sdt o2) {
+//                    return o2.ten.compareTo(o1.ten);
+//                }
+//            });
+//   }
+        }
     }
-}
+
 
 
 
