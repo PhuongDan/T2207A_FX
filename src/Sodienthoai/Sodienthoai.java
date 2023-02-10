@@ -1,4 +1,5 @@
-import com.sun.xml.internal.ws.encoding.soap.SOAP12Constants;
+package Sodienthoai;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -6,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.*;
@@ -76,9 +76,9 @@ public class Sodienthoai implements Initializable {
             }
         });
 //        public void sort() {
-//            Collections.sort(listSdt, new Comparator<Sdt>() {
+//            Collections.sort(listSdt, new Comparator<Sodienthoai.Sodienthoai.Sdt>() {
 //                @Override
-//                public int compare(Sdt o1, Sdt o2) {
+//                public int compare(Sodienthoai.Sodienthoai.Sdt o1, Sodienthoai.Sodienthoai.Sdt o2) {
 //                    return o2.ten.compareTo(o1.ten);
 //                }
 //            });
