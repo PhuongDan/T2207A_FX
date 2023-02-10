@@ -2,23 +2,31 @@ import com.sun.xml.internal.ws.encoding.soap.SOAP12Constants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.net.URL;
+import java.util.*;
 
-public class Sodienthoai {
+public class Sodienthoai implements Initializable {
     public TextField txtTen;
     public TextField txtSodienthoai;
 
+    public static TextField stTen;
+    public static TextField stSodienthoai;
+
     public ObservableList<Sdt> listSdt = FXCollections.observableArrayList();
-    public ListView<Sdt> lv;
-    public Sdt editSdt;
+
+    public static Sdt editSdt;
+    public TableView<Sdt> tbview;
+    public TableColumn<Sdt, String> cName;
+    public TableColumn<Sdt, String> cPhone;
+    public TableColumn<Sdt, Button> cAction;
+
+
 
 
     public void submit(ActionEvent actionEvent) {
@@ -28,20 +36,21 @@ public class Sodienthoai {
         if (editSdt == null) {
             Sdt s = new Sdt(t, sdt);
             listSdt.add(s);
-            lv.setItems(listSdt);
+
+
         } else {
             for (Sdt s : listSdt) {
-                if (s.sodienthoai.equals(editSdt.ten)) {
+                if (s.sodienthoai.equals(editSdt.sodienthoai)
+                        && s.ten.equals(editSdt.ten)) {
                     s.setTen(t);
                     s.setSodienthoai(sdt);
-                    editSdt = null;
                 }
             }
 
         }
-        Sdt s = new Sdt(t, sdt);
-        lv.setItems((ObservableList<Sdt>) listSdt);
-        lv.refresh();
+        tbview.setItems((ObservableList<Sdt>) listSdt);
+        tbview.refresh();
+        editSdt = null;
         clearInput();
         sort();
     }
@@ -54,7 +63,7 @@ public class Sodienthoai {
 
 
     public void edit(MouseEvent mouseEvent) {
-        editSdt = lv.getSelectionModel().getSelectedItem();
+
         txtTen.setText(editSdt.getTen());
         txtSodienthoai.setText(editSdt.getSodienthoai());
     }
@@ -75,7 +84,18 @@ public class Sodienthoai {
 //            });
 //   }
         }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        cName.setCellValueFactory(new PropertyValueFactory<>("ten"));
+        cPhone.setCellValueFactory(new PropertyValueFactory<>("sodienthoai"));
+        cAction.setCellValueFactory(new PropertyValueFactory<>("edit"));
+
+
+        stTen = txtTen;
+        stSodienthoai = txtSodienthoai;
     }
+}
 
 
 

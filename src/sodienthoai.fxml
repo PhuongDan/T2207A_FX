@@ -5,8 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane fx:controller="Sodienthoai" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sodienthoai">
    <children>
       <TextField fx:id="txtTen" layoutX="40.0" layoutY="80.0" prefHeight="49.0" prefWidth="186.0" promptText="Tên" />
       <TextField fx:id="txtSodienthoai" layoutX="40.0" layoutY="151.0" prefHeight="49.0" prefWidth="186.0" promptText="Số Điện Thoại" />
@@ -15,7 +14,13 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <ListView onMouseClicked="#edit" fx:id="lv" layoutX="334.0" layoutY="80.0" prefHeight="292.0" prefWidth="200.0" />
-      <Button onAction="#submit" layoutX="100.0" layoutY="220.0" mnemonicParsing="false" text="Submit" />
+      <Button layoutX="100.0" layoutY="220.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
+      <TableView fx:id="tbview" layoutX="238.0" layoutY="100.0" prefHeight="288.0" prefWidth="358.0">
+        <columns>
+          <TableColumn fx:id="cName" prefWidth="102.0" text="Name" />
+          <TableColumn fx:id="cPhone" prefWidth="171.0" text="PhoneNumber" />
+            <TableColumn fx:id="cAction" prefWidth="82.0" text="Action" />
+        </columns>
+      </TableView>
    </children>
 </Pane>
