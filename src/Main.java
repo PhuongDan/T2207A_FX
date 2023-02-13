@@ -1,3 +1,4 @@
+import controllers.HomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,8 +13,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage)throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Sodienthoai/sodienthoai.fxml"));
-        primaryStage.setScene(new Scene(root,800,600));
+        HomeController.rootStage = primaryStage;
+        Parent root = FXMLLoader.load(getClass().getResource("resources/home.fxml"));
+        primaryStage.setScene(new Scene(root,600,400));
         primaryStage.show();
     }
 }
