@@ -6,14 +6,12 @@ public class Classes {
     Integer id;
     String name;
     String room;
-    Button edit;
 
-    public Classes(String name, String room) {
+
+    public Classes(Integer id, String name, String room) {
+        this.id = id;
         this.name = name;
         this.room = room;
-        this.edit = new Button("Edit");
-
-
     }
 
     public Integer getId() {
@@ -40,11 +38,8 @@ public class Classes {
         this.room = room;
     }
 
-    public Button getEdit() {
-        return edit;
-    }
-
-    public void setEdit(Button edit) {
-        this.edit = edit;
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

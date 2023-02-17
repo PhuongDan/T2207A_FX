@@ -9,11 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+
 
 import java.net.URL;
 import java.sql.*;
@@ -24,7 +24,7 @@ public class ListClassesController implements Initializable {
     public TableColumn<Classes,Integer> cID;
     public TableColumn<Classes,String> cName;
     public TableColumn<Classes,String> cRoom;
-//    public TableColumn<Classes, Button> cAction;
+
 
 
     public void goToHome(ActionEvent actionEvent)throws Exception {
@@ -56,18 +56,14 @@ public class ListClassesController implements Initializable {
                list.add(c);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(e.getMessage());
+            alert.show();
         }
         tbviewcl.setItems(list);
     }
 
 
-//        @Override
-//        public void initialize(URL location, ResourceBundle resources) {
-//            cName.setCellValueFactory(new PropertyValueFactory<>("name"));
-//            cRoom.setCellValueFactory(new PropertyValueFactory<>("room"));
-//            cAction.setCellValueFactory(new PropertyValueFactory<>("edit"));
-//
-//        }
+
     }
 

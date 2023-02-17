@@ -1,7 +1,6 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -9,8 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class Thongtin implements Initializable {
@@ -38,74 +35,47 @@ public class Thongtin implements Initializable {
 
         if (editStudent == null){
             Student s = new Student(fn,em);
-//            lv.setItems(listStudent);
-        }else{
-            //editStudent.setFullName(fn);
-            //editStudent.setEmail(em):
-            for (Student s: listStudent){
-                if (s.email.equals(editStudent.fullName)){
+            listStudent.add(s);
+
+        }else {
+            for (Student s : listStudent) {
+                if (s.email.equals(editStudent.email)
+                        && s.fullName.equals(editStudent.fullName)) {
                     s.setFullName(fn);
                     s.setEmail(em);
-                    editStudent = null;
                 }
-            }
 
+            }
         }
-        Student s = new Student(fn,em);
-        listStudent.add(s);
+
 
         tbview.setItems((ObservableList<Student>) listStudent);
         tbview.refresh();
-        clearInput();
-//        String txt = "";
-//        for (Student sv: listStudent){
-//            txt+= "\n=============\n"+sv.toString();
-//        }
-//        String txt = txtInfo.getText();
-//        txt += "\n====================";
-//        txt += "\nFullname: " + fn + "\n" + "Email: " + em;
-//        txtInfo.setText(txt);
+        editStudent = null;
+            clearInput();
+        }
 
-//        IStudent s = new IStudent() {
-//            @Override
-//            public void learn(int a){
-//            }
-//        };
+        void clearInput(){
+            txtEmail.clear();
+            txtFullName.clear();
+        }
 
-//        IStudent s1 = (a)->{
-//
-//        };
-//        s1.learn(5);
-//        ArrayList<String> arrs = new ArrayList<>();
-//        arrs.add("Hello");
-//        arrs.add("world!");
-//
-//        arrs.stream().filter(s->!s.equals("a")).forEach(s->{
-//            System.out.println(s);
-//        });
-//        }
-//}
-    }
-    void clearInput(){
-        txtEmail.clear();
-        txtFullName.clear();
+
+        public void edit(MouseEvent mouseEvent) {
+            txtFullName.setText(editStudent.getFullName());
+            txtEmail.setText(editStudent.getEmail());
+        }
+
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
+            cFullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+            cEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+            cAction.setCellValueFactory(new PropertyValueFactory<>("edit"));
+
+            stFullName = txtFullName;
+            stEmail = txtEmail;
+        }
     }
 
-    public void edit(MouseEvent mouseEvent) {
-//        editStudent = lv.getSelectionModel().getSelectedItem();
-        txtFullName.setText(editStudent.getFullName());
-        txtEmail.setText(editStudent.getEmail());
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        cFullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        cEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        cAction.setCellValueFactory(new PropertyValueFactory<>("edit"));
 
 
-        stFullName = txtFullName;
-        stEmail = txtEmail;
-
-    }
-}
