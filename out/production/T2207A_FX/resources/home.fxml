@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:controller="controllers.HomeController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button onAction="#goToClasses" layoutX="66.0" layoutY="113.0" mnemonicParsing="false" prefHeight="178.0" prefWidth="200.0" style="-fx-background-color: blue;" text="Classes" textFill="WHITE">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Button>
+      <Button onAction="#goToStudents" layoutX="339.0" layoutY="110.0" mnemonicParsing="false" prefHeight="184.0" prefWidth="200.0" style="-fx-background-color: red;" text="Students" textFill="WHITE">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
