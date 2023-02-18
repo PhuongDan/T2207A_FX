@@ -50,7 +50,7 @@ public class ListStudentsController implements Initializable {
         cClass_id.setCellValueFactory(new PropertyValueFactory<>("class_id"));
         ObservableList<Student> list = FXCollections.observableArrayList();
         try {
-            Database db = new Database();
+            Database db = Database.getInstance();
             Statement stt = db.getStatement();
             String sql = "select * from sinhvien";
             ResultSet rs = stt.executeQuery(sql);
