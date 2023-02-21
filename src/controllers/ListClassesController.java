@@ -1,5 +1,6 @@
 package controllers;
 
+import daopattern.ClassesDAO;
 import database.Database;
 import entities.Classes;
 import javafx.collections.FXCollections;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ListClassesController implements Initializable {
@@ -42,25 +44,15 @@ public class ListClassesController implements Initializable {
         cID.setCellValueFactory(new PropertyValueFactory<>("id"));
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
         cRoom.setCellValueFactory(new PropertyValueFactory<>("room"));
-        ObservableList<Classes> list = FXCollections.observableArrayList();
+        ClassesDAO cd = null;
         try {
-            Database db = Database.getInstance();
-            Statement stt = db.getStatement();
-            String sql = "select * from lophoc";
-            ResultSet rs = stt.executeQuery(sql);
-            while (rs.next()){
-               Integer id = rs.getInt("id");
-               String name = rs.getString("name");
-               String room = rs.getString("room");
-               Classes c = new Classes(id,name,room);
-               list.add(c);
-            }
+            cd = ClassesDAO.getInstance();
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(e.getMessage());
-            alert.show();
+            throw new RuntimeException(e);
         }
-        tbviewcl.setItems(list);
+        ArrayList<Classes> dslh = cd.getALL();
+        tbviewcl.getItems().addAll(dslh);
+        tbviewcl.refresh();
     }
 
 

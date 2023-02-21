@@ -1,5 +1,6 @@
 package controllers;
 
+import daopattern.ClassesDAO;
 import database.Database;
 import entities.Classes;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CreateStudentController implements Initializable {
@@ -35,20 +37,9 @@ public class CreateStudentController implements Initializable {
         gt.add("Female");
         cbGender.setItems(gt);
         try {
-            Database db = Database.getInstance();
-            Statement stt = db.getStatement();
-            String sql = "select * from lophoc";
-            ResultSet rs = stt.executeQuery(sql);
-            ObservableList<Classes> list = FXCollections.observableArrayList();
-            while (rs.next()){
-                Integer id = rs.getInt("id");
-                String name = rs.getString("name");
-                String room = rs.getString("room");
-                Classes c = new Classes(id,name,room);
-                list.add(c);
-                cbClass.setItems(list);
-
-            }
+            ClassesDAO cd = ClassesDAO.getInstance();
+            ArrayList<Classes> ls = cd.getALL();
+            cbClass.getItems().addAll(ls);
         }catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(e.getMessage());
@@ -58,7 +49,6 @@ public class CreateStudentController implements Initializable {
     }
 
     public void submit(ActionEvent actionEvent) {
-
         try {
             String name = txtName.getText();
             String email = txtEmail.getText();
