@@ -1,8 +1,10 @@
 package controllers;
 
 import daopattern.ClassesDAO;
+import daopattern.StudentsDAO;
 import database.Database;
 import entities.Classes;
+import entities.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,11 +60,10 @@ public class CreateStudentController implements Initializable {
             if (name.isEmpty() || email.isEmpty() || birthday.isEmpty() || gender.isEmpty() ||class_id.equals(null)){
                 throw new Exception("Vui lòng điền đầy đủ thông tin");
             }
-            Database db = Database.getInstance();
-            Statement stt = db.getStatement();
-            String sql = "insert into sinhvien(name,email,birthday,gender,class_id) values('" + name + "','" +email+ "','"+birthday+"','"+gender+"','"+class_id+"')";
-            stt.executeUpdate(sql);
-            goToLists(null);
+            Student s = new Student(null,name,email,Date.valueOf(birthday),gender,class_id);
+            StudentsDAO sd = StudentsDAO.getInstance();
+            if (sd.create(s))
+                goToLists(null);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(e.getMessage());

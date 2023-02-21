@@ -85,7 +85,7 @@ public class StudentsDAO {
         try {
             Database db = Database.getInstance();
             Statement stt = db.getStatement();
-            String sql = "delete from sinhvien where id = " + classes.getId();
+            String sql = "delete from sinhvien where id = " + student.getId();
             if (stt.executeUpdate(sql) > 0) {
                 return true;
             }
