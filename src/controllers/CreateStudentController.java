@@ -61,8 +61,8 @@ public class CreateStudentController implements Initializable {
                 throw new Exception("Vui lòng điền đầy đủ thông tin");
             }
             Student s = new Student(null,name,email,Date.valueOf(birthday),gender,class_id);
-            StudentsDAO sd = StudentsDAO.getInstance();
-            if (sd.create(s))
+//            StudentsDAO sd = StudentsDAO.getInstance();
+//            if (sd.create(s))
                 goToLists(null);
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ClassesDAO {
+public class ClassesDAO implements DAOInterface<Classes> {
     private static ClassesDAO instance;
 
     private ClassesDAO() {
@@ -41,6 +41,11 @@ public class ClassesDAO {
             alert.show();
         }
         return list;
+    }
+
+    @Override
+    public ArrayList<Classes> getAll() {
+        return null;
     }
 
     public boolean create(Classes classes) {
@@ -107,6 +112,10 @@ public class ClassesDAO {
             alert.setHeaderText(e.getMessage());
             alert.show();
         }
+        return null;
+    }
+    //generic method
+    public <N> Classes findOne(N id){
         return null;
     }
 }
